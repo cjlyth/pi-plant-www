@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="en" ng-app="piPlant">
   <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 
@@ -62,7 +62,11 @@
         </div>
       </header>
       <main class="mdl-layout__content">
-        <div class="page-content"><!-- Your content goes here --></div>
+        <div class="page-content">
+          <p>Nothing here {{'yet' + '!'}}</p>
+          <phone-list></phone-list>
+          <!-- Your content goes here -->
+        </div>
       </main>
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
@@ -89,7 +93,40 @@
       </footer>
     </div>
 
+
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-loader.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+
+    <!-- build:js scripts/main.min.js -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/app.module.js"></script>
+
+    <script src="scripts/home/home.module.js"></script>
+    <script src="scripts/home/home.component.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBTEGwVRrKWtz-vzAzNObA-7Q71IUzeBfU",
+        authDomain: "pi-plant.firebaseapp.com",
+        databaseURL: "https://pi-plant.firebaseio.com",
+        storageBucket: "pi-plant.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

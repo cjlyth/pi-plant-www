@@ -71,6 +71,5 @@
       console.error('Error during service worker registration:', e);
     });
   }
-
   // Your custom JavaScript goes here
 })();
