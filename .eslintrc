@@ -2,6 +2,7 @@
   'globals': {
     'jQuery':false,
     '$':true,
-    'angular'
+    'angular':false,
+    'Particle':false
   }
 }

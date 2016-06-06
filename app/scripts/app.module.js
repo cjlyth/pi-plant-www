@@ -9,6 +9,8 @@
     'firebase',
     // Custom modules.
     'phoneList'
-  ]);
+  ]).factory('particle', function() {
+    return new Particle();
+  });
   console.log('app module');
 })();
