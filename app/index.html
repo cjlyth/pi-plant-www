@@ -57,50 +57,44 @@
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="#">Login</a>
+            <a class="mdl-navigation__link" href="#!/particle/login">Login</a>
           </nav>
         </div>
       </header>
-      <main class="mdl-layout__content">
+      <main class="mdl-layout__content" ng-controller="MainController">
         <div class="page-content">
           <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col-desktop mdl-cell--1-offset-tablet mdl-cell--6-col-tablet">
+            <div class="mdl-cell mdl-cell--12-col">
               <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
+                  <h2 class="mdl-card__title-text">Content</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
+                  <div ng-view></div>
                 </div>
               </div>
             </div>
-
-            <div class="mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col-desktop mdl-cell--1-offset-tablet mdl-cell--6-col-tablet">
+            <div class="mdl-cell mdl-cell--12-col">
               <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Phones</h2>
+                  <h2 class="mdl-card__title-text">Location Debug</h2>
                 </div>
-                <div class="mdl-card__supporting-text">
-                  <phone-list></phone-list>
+                <div class="mdl-card__supporting-text" ng-controller="MainController" ng-cloak>
+                  <div>
+                    <pre>tokens = {{tokens | json}}</pre>
+                    <pre>$location.path() = {{$location.path()}}</pre>
+                    <pre>$location.hash() = {{$location.hash()}}</pre>
+                    <pre>$location.search() = {{$location.search()}}</pre>
+                    <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+                    <pre>$route.current.params = {{$route.current.params}}</pre>
+                    <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+                    <pre>$routeParams = {{$routeParams}}</pre>
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
-
           <!-- Your content goes here -->
-
 
         </div>
       </main>
@@ -133,10 +127,10 @@
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 
     <!-- Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-loader.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
@@ -148,8 +142,7 @@
     <script src="scripts/main.js"></script>
 
     <script src="scripts/app.module.js"></script>
-    <script src="scripts/home/home.module.js"></script>
-    <script src="scripts/home/home.component.js"></script>
+
     <!-- endbuild -->
 
     <script>
