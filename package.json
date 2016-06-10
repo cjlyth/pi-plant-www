@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "angular": "1.5.5",
     "apache-server-configs": "^2.7.1",
     "babel-core": "^6.0.15",
     "babel-preset-es2015": "^6.0.15",
@@ -40,5 +41,9 @@
   },
   "eslintConfig": {
     "extends": "google"
+  },
+  "dependencies": {
+    "angularfire": "^2.0.1",
+    "firebase": "^3.0.4"
   }
 }

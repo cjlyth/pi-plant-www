@@ -1,8 +1,9 @@
 {
-  'globals': {
-    'jQuery':false,
-    '$':true,
-    'angular':false,
-    'Particle':false
+  "globals": {
+    "jQuery":false,
+    "$":true,
+    "firebase": false,
+    "angular":false,
+    "Particle":false
   }
 }

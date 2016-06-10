@@ -49,7 +49,7 @@
 
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
+      <header class="mdl-layout__header" ng-controller="HeaderController">
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <span class="mdl-layout-title">piPlant</span>
@@ -58,6 +58,8 @@
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="#!/particle/login">Login</a>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+             ng-click="checkParticle()">Test</button>
           </nav>
         </div>
       </header>
@@ -80,7 +82,12 @@
                   <h2 class="mdl-card__title-text">Location Debug</h2>
                 </div>
                 <div class="mdl-card__supporting-text" ng-controller="MainController" ng-cloak>
+                  <div><input type="text" ng-model="data.text"/>
+                    <!-- all changes from our Firebase database magically appear here! -->
+                    <h1>You said: {{ data.text }}</h1></div>
                   <div>
+                    <pre>firebase.User = {{firebase.User | json}}</pre>
+                    <pre>data = {{data | json}}</pre>
                     <pre>tokens = {{tokens | json}}</pre>
                     <pre>$location.path() = {{$location.path()}}</pre>
                     <pre>$location.hash() = {{$location.hash()}}</pre>
@@ -133,10 +140,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
-    <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
 
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
