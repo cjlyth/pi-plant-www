@@ -56,6 +56,7 @@
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
+          <span ng-cloak ng-bind="user.displayName"></span>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="#!/particle/login">Login</a>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
@@ -86,7 +87,7 @@
                     <!-- all changes from our Firebase database magically appear here! -->
                     <h1>You said: {{ data.text }}</h1></div>
                   <div>
-                    <pre>firebase.User = {{firebase.User | json}}</pre>
+
                     <pre>data = {{data | json}}</pre>
                     <pre>tokens = {{tokens | json}}</pre>
                     <pre>$location.path() = {{$location.path()}}</pre>

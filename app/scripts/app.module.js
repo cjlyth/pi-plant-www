@@ -17,17 +17,16 @@
     .controller('HeaderController',
       ['$scope', '$routeParams', 'particleService', '$firebaseAuth',
         function($scope, $routeParams, particleService, $firebaseAuth) {
+          $firebaseAuth().$onAuthStateChanged(function(user) {
+            $scope.user = user;
+          });
           $scope.checkParticle = function checkParticle() {
             var auth = $firebaseAuth();
-
-            // login with Facebook
             auth.$signInWithPopup('google').then(function(firebaseUser) {
               console.log('Signed in as:', firebaseUser);
             }).catch(function(error) {
               console.log('Authentication failed:', error);
             });
-            // console.log('$firebaseAuth', $firebaseAuth);
-            // console.log('particleService.isReady:', particleService.isReady());
           };
         }
       ])
@@ -53,7 +52,6 @@
           var ref = firebase.database().ref().child('data');
           var syncObject = $firebaseObject(ref);
           syncObject.$bindTo($scope, 'data');
-
           $scope.$route = $route;
           $scope.$location = $location;
           $scope.$routeParams = $routeParams;
