@@ -18,10 +18,17 @@
       ['$scope', '$routeParams', 'particleService', '$firebaseAuth',
         function($scope, $routeParams, particleService, $firebaseAuth) {
           $firebaseAuth().$onAuthStateChanged(function(user) {
-            $scope.user = user;
+            $scope.$apply(function(_scope) {
+              _scope.user = user;
+            });
           });
-          $scope.checkParticle = function checkParticle() {
+          $scope.signOut = function signOut() {
             var auth = $firebaseAuth();
+            auth.$signOut();
+          };
+          $scope.signIn = function signIn() {
+            var auth = $firebaseAuth();
+            console.log('signIn');
             auth.$signInWithPopup('google').then(function(firebaseUser) {
               console.log('Signed in as:', firebaseUser);
             }).catch(function(error) {

@@ -56,11 +56,27 @@
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
-          <span ng-cloak ng-bind="user.displayName"></span>
+
+          <img ng-src="{{user.photoURL}}" ng-show="Boolean(user.photoURL)"/>
+          <span class="wsk-icon wsk-icon--person-outline" title="wsk-icon--person-outline"></span>
+          <i class="material-icons">person__outline</i>
+
+          <!-- Right aligned menu below button -->
+          <button id="user-menu_button"
+                  class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+          </button>
+
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+              for="user-menu_button">
+            <li class="mdl-menu__item">Some Action</li>
+          </ul>
+
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="#!/particle/login">Login</a>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-             ng-click="checkParticle()">Test</button>
+
+            <a class="mdl-navigation__link" href="#"
+                    ng-click="signIn()"
+                    ng-hide="user">Sign in</a>
           </nav>
         </div>
       </header>
