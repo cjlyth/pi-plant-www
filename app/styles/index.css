@@ -69,14 +69,3 @@
   width: 100%;
 }
 
-#user-menu_auth-menu button {
-  margin: 0 20px;
-  min-width: 20px;
-}
-#user-menu_auth-menu > div {
-  display: table-cell;
-  text-align: right;
-}
-#user-menu_auth-menu > div:first-child {
-  text-align: left;
-}

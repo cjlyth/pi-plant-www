@@ -4,6 +4,7 @@
 
   angular.module('piPlant', [
     'ngRoute',
+    'ui.router',
     'firebase'
   ]).factory('particleService', [
     '$rootScope',
@@ -64,15 +65,61 @@
           $scope.$routeParams = $routeParams;
         }
       ])
-    .config(['$locationProvider', '$routeProvider',
-      function($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix('!');
-        $routeProvider.when('/particle/login', {
-          templateUrl: 'scripts/particle-login/particle-login.template.html'
-        }).when('/particle/auth/token', {
-          controller: 'ParticleAuthTokenController',
-          template: '<h1>TOKEN</h1>'
-        }).otherwise('/login');
+    .directive('menuClose', function() {
+      return {
+        restrict: 'AC',
+        link: function($scope, $element) {
+          $element.bind('click', function() {
+            var drawer = angular.element(document.querySelector('.mdl-layout__drawer'));
+            var obfuscator = angular.element(document.querySelector('.mdl-layout__obfuscator'));
+
+            if(obfuscator) {
+              obfuscator.removeClass('is-visible');
+            }
+            if(drawer) {
+              drawer.toggleClass('is-visible');
+            }
+          });
+        }
+      };
+    })
+    .config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider',
+      function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise("/state1");
+        //
+        // Now set up the states
+        $stateProvider
+          .state('state1', {
+            url: "/state1",
+            templateUrl: "partials/state1.html"
+          })
+          .state('state1.list', {
+            url: "/list",
+            templateUrl: "partials/state1.list.html",
+            controller: function($scope) {
+              $scope.items = ["A", "List", "Of", "Items"];
+            }
+          })
+          .state('state2', {
+            url: "/state2",
+            templateUrl: "partials/state2.html"
+          })
+          .state('state2.list', {
+            url: "/list",
+            templateUrl: "partials/state2.list.html",
+            controller: function($scope) {
+              $scope.things = ["A", "Set", "Of", "Things"];
+            }
+          });
+
+        // $locationProvider.hashPrefix('!');
+        // $routeProvider.when('/particle/login', {
+        //   templateUrl: 'scripts/particle-login/particle-login.template.html'
+        // }).when('/particle/auth/token', {
+        //   controller: 'ParticleAuthTokenController',
+        //   template: '<h1>TOKEN</h1>'
+        // }).otherwise('/login');
       }
     ]);
 })();

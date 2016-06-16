@@ -46,81 +46,33 @@
   </head>
   <body>
     <!-- Add your site or app content here -->
+    <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
 
     <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="mdl-layout__header" ng-controller="HeaderController">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">piPlant</span>
+          <span class="mdl-layout-title mdl-layout--small-screen-only">piPlant</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
 
-          <img ng-src="{{user.photoURL}}" ng-show="Boolean(user.photoURL)"/>
-          <span class="wsk-icon wsk-icon--person-outline" title="wsk-icon--person-outline"></span>
-          <i class="material-icons">person__outline</i>
-
-          <!-- Right aligned menu below button -->
-          <button id="user-menu_button"
-                  class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">more_vert</i>
-          </button>
-
-          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-              for="user-menu_button">
-            <li class="mdl-menu__item">Some Action</li>
-          </ul>
-
-          <nav class="mdl-navigation">
-
-            <a class="mdl-navigation__link" href="#"
-                    ng-click="signIn()"
-                    ng-hide="user">Sign in</a>
-          </nav>
         </div>
       </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">piPlant</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" menu-close  ui-sref="state1">State 1</a>
+          <a class="mdl-navigation__link" ui-sref="state2">State 2</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
       <main class="mdl-layout__content" ng-controller="MainController">
-        <div class="page-content">
-          <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col">
-              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Content</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  <div ng-view></div>
-                </div>
-              </div>
-            </div>
-            <div class="mdl-cell mdl-cell--12-col">
-              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Location Debug</h2>
-                </div>
-                <div class="mdl-card__supporting-text" ng-controller="MainController" ng-cloak>
-                  <div><input type="text" ng-model="data.text"/>
-                    <!-- all changes from our Firebase database magically appear here! -->
-                    <h1>You said: {{ data.text }}</h1></div>
-                  <div>
-
-                    <pre>data = {{data | json}}</pre>
-                    <pre>tokens = {{tokens | json}}</pre>
-                    <pre>$location.path() = {{$location.path()}}</pre>
-                    <pre>$location.hash() = {{$location.hash()}}</pre>
-                    <pre>$location.search() = {{$location.search()}}</pre>
-                    <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
-                    <pre>$route.current.params = {{$route.current.params}}</pre>
-                    <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
-                    <pre>$routeParams = {{$routeParams}}</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Your content goes here -->
-
-        </div>
+        <div class="page-content" ui-view></div>
       </main>
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
@@ -148,7 +100,7 @@
     </div>
 
 
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.1.3/material.min.js"></script>
 
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
@@ -156,7 +108,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
-    <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
 
