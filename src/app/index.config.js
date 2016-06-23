@@ -6,9 +6,12 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig, $mdThemingProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
+
+    $mdThemingProvider.theme('default')
+        .dark();
 
     // Set options third-party lib
     toastrConfig.allowHtml = true;
