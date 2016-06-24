@@ -10,8 +10,7 @@
     // Enable log
     $logProvider.debugEnabled(true);
 
-    $mdThemingProvider.theme('default')
-        .dark();
+    $mdThemingProvider.theme('default').dark();
 
     // Set options third-party lib
     toastrConfig.allowHtml = true;

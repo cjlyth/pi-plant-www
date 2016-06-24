@@ -4,7 +4,6 @@
 
   angular
     .module('piplant')
-    .constant('malarkey', malarkey)
     .constant('moment', moment);
 
 })();

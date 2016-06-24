@@ -59,36 +59,63 @@ html {
   padding: 0.2em 0;
 }
 
+
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px; }
+
+.gridListdemoBasicUsage .gray {
+  background: #f5f5f5; }
+
+.gridListdemoBasicUsage .green {
+  background: #b9f6ca; }
+
+.gridListdemoBasicUsage .yellow {
+  background: #ffff8d; }
+
+.gridListdemoBasicUsage .blue {
+  background: #84ffff; }
+
+.gridListdemoBasicUsage .purple {
+  background: #b388ff; }
+
+.gridListdemoBasicUsage .red {
+  background: #ff8a80; }
+
+.gridListdemoBasicUsage md-grid-tile {
+  transition: all 400ms ease-out 50ms; }
+
+
+
 md-toolbar.md-default-theme {
   background-color: black;
 }
-
-section.jumbotron {
-  margin-bottom: 30px;
-  padding: 1px 30px;
-  background-color: #5aadbb;
-  text-align: center;
-
-  color: white;
-
-  h1 {
-    font-size: 3em;
-  }
-}
-
-.techs {
-  display: flex;
-  flex-flow: row wrap;
-
-  md-card {
-    width: 30%;
-
-    img.pull-right {
-      float: right;
-      width: 100px;
-    }
-  }
-}
+//
+//section.jumbotron {
+//  margin-bottom: 30px;
+//  padding: 1px 30px;
+//  background-color: #5aadbb;
+//  text-align: center;
+//
+//  color: white;
+//
+//  h1 {
+//    font-size: 3em;
+//  }
+//}
+//
+//.techs {
+//  display: flex;
+//  flex-flow: row wrap;
+//
+//  md-card {
+//    width: 30%;
+//
+//    img.pull-right {
+//      float: right;
+//      width: 100px;
+//    }
+//  }
+//}
 
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
