@@ -26,9 +26,12 @@
       vm.authorized = false;
       vm.onChange = onChange;
       firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
-        vm.authorized = !!firebaseUser;
         if (firebaseUser) {
-          $log.debug('firebaseUser login');
+          $log.debug('firebaseUser login', firebaseUser);
+          firebaseUser.providerData.forEach(function(provider){
+            $log.debug("provider", provider)
+            vm.authorized = provider.providerId && provider.providerId === 'google.com';
+          });
           vm.accountInfo.firebaseUser = {
             'displayName': firebaseUser.displayName,
             'email': firebaseUser.email,
@@ -38,6 +41,7 @@
           };
         } else {
           $log.debug('firebaseUser logout');
+          vm.authorized = false;
           vm.accountInfo.firebaseUser = undefined;
         }
       });
