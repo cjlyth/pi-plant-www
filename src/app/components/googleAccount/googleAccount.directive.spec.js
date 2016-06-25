@@ -13,12 +13,11 @@
     beforeEach(module('piplant'));
     beforeEach(inject(function($compile, $rootScope) {
 
-      el = angular.element('<firebase-auth></firebase-auth>');
+      el = angular.element('<google-account></google-account>');
 
       $compile(el)($rootScope.$new());
       $rootScope.$digest();
       vm = el.isolateScope().vm;
-      // ctrl = el.controller('acmeNavbar');
     }));
 
     it('should be compiled', function() {

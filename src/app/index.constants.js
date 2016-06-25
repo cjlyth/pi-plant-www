@@ -4,6 +4,7 @@
 
   angular
     .module('piplant')
-    .constant('moment', moment);
+      .constant('moment', moment)
+      .constant('firebase', firebase);
 
 })();

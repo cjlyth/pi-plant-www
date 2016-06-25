@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, $mdThemingProvider) {
+  function config($logProvider, toastrConfig, $mdThemingProvider, firebase) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -18,6 +18,14 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+
+    var config = {
+      apiKey: "AIzaSyBTEGwVRrKWtz-vzAzNObA-7Q71IUzeBfU",
+      authDomain: "pi-plant.firebaseapp.com",
+      databaseURL: "https://pi-plant.firebaseio.com",
+      storageBucket: "pi-plant.appspot.com",
+    };
+    firebase.initializeApp(config);
   }
 
 })();
