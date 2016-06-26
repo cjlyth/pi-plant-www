@@ -36,6 +36,5 @@
   },
   "_source": "https://github.com/spark/particle-api-js.git",
   "_target": "^5.3.0",
-  "_originalSource": "particle-api-js",
-  "_direct": true
+  "_originalSource": "particle-api-js"
 }
