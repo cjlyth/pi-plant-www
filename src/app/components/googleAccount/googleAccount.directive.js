@@ -4,7 +4,7 @@
   angular
     .module('piplant')
     .directive('googleAccount', googleAccount);
-
+  //TODO: convert this to link style directive
   /** @ngInject */
   function googleAccount() {
     var directive = {

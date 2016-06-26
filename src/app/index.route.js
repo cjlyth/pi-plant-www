@@ -15,6 +15,13 @@
             controller: 'MainController',
             controllerAs: 'main'
         })
+        .state('home.auth.particle', {
+            url: '/particle',
+            templateUrl: 'app/main/auth/auth.html',
+            controller: 'AuthController',
+            controllerAs: 'auth'
+        })
+
         .state('home.auth', {
             url: '/auth',
             templateUrl: 'app/main/auth/auth.html',

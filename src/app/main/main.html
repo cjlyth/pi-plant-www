@@ -1,7 +1,39 @@
-<div layout="column" layout-fill>
-    <md-nav-bar md-selected-nav-item="currentLink" aria-label="Navigation">
-        <md-nav-item md-nav-sref="home.auth" name="auth">Auth</md-nav-item>
-        <!--<md-nav-item md-nav-sref="home.devices" name="devices">Devices</md-nav-item>-->
-    </md-nav-bar>
-    <div ui-view flex="grow"></div>
-</div>
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <img class="piplant-logo"  src="assets/images/plant/32.png" >
+        <h2>
+            <span>PiPlant</span>
+        </h2>
+        <span flex></span>
+        <md-menu md-position-mode="target-right target" ng-show="accountInfo.firebaseUser">
+            <md-button aria-label="Open user menu"
+                       class="md-icon-button"
+                       ng-click="$mdOpenMenu($event)">
+                <i class="material-icons"
+                   ng-hide="accountInfo.firebaseUser.photoURL">account_circle</i>
+                <img class="piplant-user-avatar"
+                     ng-show="accountInfo.firebaseUser.photoURL"
+                     ng-src="{{ accountInfo.firebaseUser.photoURL }}">
+            </md-button>
+            <md-menu-content width="4" >
+                <md-menu-item>
+                    <img class="piplant-user-avatar"
+                         ng-show="accountInfo.firebaseUser.photoURL"
+                         ng-src="{{ accountInfo.firebaseUser.photoURL }}">
+                    <span class="md-headline" ng-bind="accountInfo.firebaseUser.displayName"></span>
+                    <span class="md-subhead" ng-bind="accountInfo.firebaseUser.email"></span>
+                </md-menu-item>
+                <md-menu-item ng-repeat="item in [1, 2, 3]">
+                    <md-button ng-click="ctrl.announceClick($index)">
+                        <div layout="row" flex>
+                            <p flex>Option {{item}}</p>
+                            <md-icon md-menu-align-target md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+</md-toolbar>
+<md-content ui-view layout-padding></md-content>
+

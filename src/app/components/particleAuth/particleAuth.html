@@ -1,0 +1,38 @@
+<md-switch  aria-label="Particle Account"
+            ng-model="vm.authorized"
+            md-no-ink="true"
+            ng-change="vm.onChange(vm.authorized)">Particle Account</md-switch>
+<div ng-show="vm.authorized && !accountInfo.particleUser">
+    <form action="https://api.particle.io/v1/orgs/empiri-software/customers"
+          method="post">
+        <input type="hidden" name="response_type" value="token" />
+        <input type="hidden" name="client_id" value="piplant-www-686" />
+        <div layout="column" ng-cloak>
+            <md-input-container>
+                <label>Email</label>
+                <input class="mdl-textfield__input" type="text" id="email" name="email"
+                        required/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+            <md-input-container >
+                <label>Password</label>
+                <input class="mdl-textfield__input" type="password" id="password" name="password"
+                required/>
+            </md-input-container>
+            <section class="layout-wrap layout-sm-column layout-align-end-center layout-row"
+                     layout="row" layout-sm="column" layout-align="end center" layout-wrap="">
+                <button class="md-secondary md-button md-gmp-blue-theme md-ink-ripple"
+                        type="button"  ng-click="vm.reset()" aria-label="Cancel">
+                    <span>Cancel</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+                <button class="md-raised md-primary md-button md-gmp-blue-theme md-ink-ripple"
+                        type="submit"  aria-label="Sign in">
+                    <span>Sign in</span>
+                </button>
+            </section>
+        </div>
+    </form>
+</div>

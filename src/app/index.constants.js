@@ -5,6 +5,13 @@
   angular
     .module('piplant')
       .constant('moment', moment)
-      .constant('firebase', firebase);
+      .constant('firebase', firebase)
+      .constant('firebaseConfig', {
+        apiKey: "AIzaSyBTEGwVRrKWtz-vzAzNObA-7Q71IUzeBfU",
+        authDomain: "pi-plant.firebaseapp.com",
+        databaseURL: "https://pi-plant.firebaseio.com",
+        storageBucket: "pi-plant.appspot.com",
+      })
+  ;
 
 })();
