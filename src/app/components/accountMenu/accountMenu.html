@@ -1,0 +1,40 @@
+<md-menu md-position-mode="target-right target" ng-show="vm.accountInfo.firebaseUser">
+    <md-button aria-label="Open user menu"
+               class="md-icon-button"
+               ng-click="$mdOpenMenu($event)">
+        <md-icon class="material-icons"
+                 ng-hide="vm.accountInfo.firebaseUser.photoURL">account_circle</md-icon>
+        <img class="piplant-user-avatar"
+             ng-show="vm.accountInfo.firebaseUser.photoURL"
+             ng-src="{{ vm.accountInfo.firebaseUser.photoURL }}">
+    </md-button>
+    <md-menu-content width="4" >
+        <md-menu-item ng-show="vm.accountInfo.firebaseUser">
+            <div layout="row" flex>
+                <div layout-padding>
+                    <img class="piplant-user-avatar"
+                         ng-show="vm.accountInfo.firebaseUser.photoURL"
+                         ng-src="{{ vm.accountInfo.firebaseUser.photoURL }}">
+                </div>
+                <div layout="column">
+                    <span class="md-subhead" ng-bind="vm.accountInfo.firebaseUser.displayName"></span>
+                    <span class="md-caption" ng-bind="vm.accountInfo.firebaseUser.email"></span>
+                </div>
+            </div>
+        </md-menu-item>
+        <md-menu-divider ng-show="vm.accountInfo.firebaseUser"></md-menu-divider>
+        <md-menu-item ng-show="vm.accountInfo.firebaseUser">
+            <md-button ng-click="vm.signout()">
+                <div layout="row" flex>
+                    <md-icon ng-style="{color: '#A00'}"
+                             aria-label="Sign out warning"
+                             class="material-icons step"
+                             ng-class="3">
+                        remove_circle
+                    </md-icon>
+                    <span flex>Sign out</span>
+                </div>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

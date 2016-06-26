@@ -2,7 +2,9 @@
             ng-model="vm.authorized"
             md-no-ink="true"
             ng-change="vm.onChange(vm.authorized)">Particle Account</md-switch>
+
 <div ng-show="vm.authorized && !accountInfo.particleUser">
+    <p class="md-body-2">Please enter your particle.io email and password here to request an auth token.</p>
     <form action="https://api.particle.io/v1/orgs/empiri-software/customers"
           method="post">
         <input type="hidden" name="response_type" value="token" />
@@ -11,7 +13,7 @@
             <md-input-container>
                 <label>Email</label>
                 <input class="mdl-textfield__input" type="text" id="email" name="email"
-                        required/>
+                        required ng-model="vm.email"  />
             </md-input-container>
             <div flex="5" hide-xs hide-sm>
                 <!-- Spacer //-->
@@ -35,4 +37,6 @@
             </section>
         </div>
     </form>
+    <pre>defaultEmail: {{vm.defaultEmail}}</pre>
+    <pre>email {{vm.email}}</pre>
 </div>

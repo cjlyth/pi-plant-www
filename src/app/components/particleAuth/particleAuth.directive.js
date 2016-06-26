@@ -9,9 +9,7 @@
     function particleAuth() {
         var directive = {
             restrict: 'E',
-            scope: {
-                accountInfo: '='
-            },
+            scope: true,
             templateUrl: 'app/components/particleAuth/particleAuth.html',
             controller: ParticleAuthController,
             controllerAs: 'vm',
@@ -21,33 +19,14 @@
         return directive;
 
         /** @ngInject */
-        function ParticleAuthController($log) {
+        function ParticleAuthController($log, firebaseAuth) {
             var vm = this;
-
             vm.authorized = false;
-
             activate();
-
             function activate() {
-                // return getContributors().then(function() {
-                //     $log.info('Activated Contributors View');
-                // });
-            }
-
-            // function getContributors() {
-            //     return githubContributor.getContributors(10).then(function(data) {
-            //         vm.contributors = data;
-            //
-            //         return vm.contributors;
-            //     });
-            // }
-        }
-        function onChange(state){
-            if (state) {
-                $log.debug("todo: attempt login");
-                // vm.accountInfo.particleUser = undefined;
-            } else {
-                $log.debug("todo: attempt logout");
+                firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
+                    vm.email = firebaseUser ? firebaseUser.email : null;
+                });
             }
         }
     }
