@@ -6,8 +6,12 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, firebaseAuth, $state) {
     $log.debug('runBlock end');
+    firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
+      if (!firebaseUser) {
+        $state.go('home');
+      }
+    });
   }
-
 })();
