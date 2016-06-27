@@ -6,13 +6,17 @@
     .controller('AuthController', AuthController);
 
   /** @ngInject */
-  function AuthController($log, $rootScope, $scope) {
+  function AuthController($log, firebaseAuth) {
     var vm = this;
+    vm.firebase = firebaseAuth;
+    
+    
     activate();
-    $rootScope.accountInfo = {'test':'test'};
+
     function activate() {
       $log.debug('auth activate');
-      $rootScope.currentLink = 'auth';
+      // TODO: look for tokens
     }
+ 
   }
 })();

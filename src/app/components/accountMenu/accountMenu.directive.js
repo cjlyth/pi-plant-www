@@ -9,11 +9,11 @@
     function accountMenu() {
         var directive = {
             restrict: 'E',
+            templateUrl: 'app/components/accountMenu/accountMenu.html',
+            controller: AccountMenuController,
             scope: {
                 accountInfo: '='
             },
-            templateUrl: 'app/components/accountMenu/accountMenu.html',
-            controller: AccountMenuController,
             controllerAs: 'vm',
             bindToController: true
         };
@@ -21,18 +21,12 @@
         return directive;
 
         /** @ngInject */
-        function AccountMenuController($log, authentication) {
+        function AccountMenuController($log, firebaseAuth) {
             var vm = this;
-            vm.signout = signout;
+            vm.signOut = signOut;
 
-            activate();
-
-            function activate() {
-                $log.info('Activated AccountMenu', vm.accountInfo);
-            }
-
-            function signout(){
-                authentication.signout();
+            function signOut(){
+                firebaseAuth.$signOut();
             }
         }
     }

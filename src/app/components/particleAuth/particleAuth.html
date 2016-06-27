@@ -1,42 +1,14 @@
 <md-switch  aria-label="Particle Account"
             ng-model="vm.authorized"
-            md-no-ink="true"
-            ng-change="vm.onChange(vm.authorized)">Particle Account</md-switch>
-
-<div ng-show="vm.authorized && !accountInfo.particleUser">
-    <p class="md-body-2">Please enter your particle.io email and password here to request an auth token.</p>
-    <form action="https://api.particle.io/v1/orgs/empiri-software/customers"
-          method="post">
-        <input type="hidden" name="response_type" value="token" />
-        <input type="hidden" name="client_id" value="piplant-www-686" />
-        <div layout="column" ng-cloak>
-            <md-input-container>
-                <label>Email</label>
-                <input class="mdl-textfield__input" type="text" id="email" name="email"
-                        required ng-model="vm.email"  />
-            </md-input-container>
-            <div flex="5" hide-xs hide-sm>
-                <!-- Spacer //-->
-            </div>
-            <md-input-container >
-                <label>Password</label>
-                <input class="mdl-textfield__input" type="password" id="password" name="password"
-                required/>
-            </md-input-container>
-            <section class="layout-wrap layout-sm-column layout-align-end-center layout-row"
-                     layout="row" layout-sm="column" layout-align="end center" layout-wrap="">
-                <button class="md-secondary md-button md-gmp-blue-theme md-ink-ripple"
-                        type="button"  ng-click="vm.reset()" aria-label="Cancel">
-                    <span>Cancel</span>
-                    <div class="md-ripple-container"></div>
-                </button>
-                <button class="md-raised md-primary md-button md-gmp-blue-theme md-ink-ripple"
-                        type="submit"  aria-label="Sign in">
-                    <span>Sign in</span>
-                </button>
-            </section>
-        </div>
-    </form>
-    <pre>defaultEmail: {{vm.defaultEmail}}</pre>
-    <pre>email {{vm.email}}</pre>
+            md-no-ink="true">Particle Account</md-switch>
+<div layout="row" ng-show="vm.authorized">
+    <md-input-container flex>
+        <label>Particle Access Token</label>
+        <input type="text" ng-model="accountInfo.particleAccessToken"  />
+    </md-input-container>
+    <md-button class="md-fab md-mini"
+               ng-disabled="!vm.accessToken"
+               aria-label="Test access token">
+        <md-icon>refresh</md-icon>
+    </md-button>
 </div>

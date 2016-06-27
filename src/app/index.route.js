@@ -8,32 +8,33 @@
 
     /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-        .state('home', {
+        var home = {
+            name: 'home',
             url: '/home',
             templateUrl: 'app/main/main.html',
             controller: 'MainController',
             controllerAs: 'main'
-        })
-        .state('home.auth.particle', {
-            url: '/particle',
-            templateUrl: 'app/main/auth/auth.html',
-            controller: 'AuthController',
-            controllerAs: 'auth'
-        })
-
-        .state('home.auth', {
+        };
+        var homeAuth = {
+            name: 'home.auth',
             url: '/auth',
             templateUrl: 'app/main/auth/auth.html',
             controller: 'AuthController',
             controllerAs: 'auth'
-        })
-        .state('home.devices', {
+        };
+        var homeDevices = {
+            name: 'home.devices',
             url: '/devices',
             templateUrl: 'app/main/devices/devices.html',
             controller: 'DevicesController',
             controllerAs: 'devices'
-        });
+        };
+
+        $stateProvider
+            .state(home)
+            .state(homeAuth)
+            .state(homeDevices)
+        ;
 
     $urlRouterProvider.otherwise('/home/auth');
   }

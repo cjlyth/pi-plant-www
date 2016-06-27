@@ -1,14 +1,17 @@
-<md-card layout-fill>
-    <md-card-header>
-        <md-card-header-text>
-            <span class="md-title">Authentication</span>
-            <span class="md-subhead">Please log in with one of our supported authentication providers</span>
-        </md-card-header-text>
-    </md-card-header>
-    <md-card-content>
-        <google-account account-info="accountInfo"></google-account>
-        <particle-auth></particle-auth>
-        <pre>{{accountInfo | json}}</pre>
-        <pre>{{accountInfo.firebaseUser.email}}</pre>
-    </md-card-content>
-</md-card>
+
+<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-card>
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-title">Google Authentication</span>
+            </md-card-header-text>
+        </md-card-header>
+        <md-card-actions layout="row" layout-align="center center">
+            <md-button ng-click="auth.firebase.$signOut()"
+                       ng-disabled="!auth.firebase.$getAuth()">Sign out</md-button>
+            <md-button class="md-primary md-raised" ng-disabled="!!auth.firebase.$getAuth()"
+                       ng-click="auth.firebase.$signInWithPopup('google')">Sign in</md-button>
+        </md-card-actions>
+    </md-card>
+
+</section>

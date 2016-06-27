@@ -10,9 +10,6 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/googleAccount/googleAccount.html',
-      scope: {
-        accountInfo: '='
-      },
       controller: GoogleAccountController,
       controllerAs: 'vm',
       bindToController: true
@@ -27,32 +24,17 @@
       vm.onChange = onChange;
       firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
         if (firebaseUser) {
-          $log.debug('firebaseUser login', firebaseUser);
           firebaseUser.providerData.forEach(function(provider){
-            $log.debug("provider", provider)
             vm.authorized = provider.providerId && provider.providerId === 'google.com';
           });
-          vm.accountInfo.firebaseUser = {
-            'displayName': firebaseUser.displayName,
-            'email': firebaseUser.email,
-            'emailVerified': firebaseUser.emailVerified,
-            'isAnonymous': firebaseUser.isAnonymous,
-            'photoURL': firebaseUser.photoURL
-          };
         } else {
-          $log.debug('firebaseUser logout');
           vm.authorized = false;
-          vm.accountInfo.firebaseUser = undefined;
         }
       });
       function onChange(state){
+        $log.debug('GoogleAccountController.onChange', state);
         if (state) {
-          $log.debug("todo: attempt login", firebaseAuth);
-          firebaseAuth.$signInWithPopup('google').then(function(accountInfo) {
-            $log.debug('Account info:', accountInfo);
-          }).catch(function(error) {
-            $log.debug('Authentication failed:', error);
-          });
+          firebaseAuth.$signInWithPopup('google');
         } else {
           firebaseAuth.$signOut();
         }

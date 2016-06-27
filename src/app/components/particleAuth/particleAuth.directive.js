@@ -19,14 +19,15 @@
         return directive;
 
         /** @ngInject */
-        function ParticleAuthController($log, firebaseAuth) {
+        function ParticleAuthController($scope, $log) {
             var vm = this;
-            vm.authorized = false;
-            activate();
-            function activate() {
-                firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
-                    vm.email = firebaseUser ? firebaseUser.email : null;
-                });
+            vm.authorized = true;
+            vm.testAccessToken = testAccessToken;
+
+            $log.debug('ParticleAuthController init');
+            function testAccessToken(){
+                $log.debug('ParticleAuthController.testAccessToken');
+
             }
         }
     }
