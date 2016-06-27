@@ -15,13 +15,6 @@
             controller: 'MainController',
             controllerAs: 'main'
         };
-        var homeAuth = {
-            name: 'home.auth',
-            url: '/auth',
-            templateUrl: 'app/main/auth/auth.html',
-            controller: 'AuthController',
-            controllerAs: 'auth'
-        };
         var homeDevices = {
             name: 'home.devices',
             url: '/devices',
@@ -32,11 +25,10 @@
 
         $stateProvider
             .state(home)
-            .state(homeAuth)
             .state(homeDevices)
         ;
 
-    $urlRouterProvider.otherwise('/home/auth');
+    $urlRouterProvider.otherwise('/home');
   }
 
 })();

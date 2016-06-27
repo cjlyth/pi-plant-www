@@ -11,9 +11,7 @@
             restrict: 'E',
             templateUrl: 'app/components/accountMenu/accountMenu.html',
             controller: AccountMenuController,
-            scope: {
-                accountInfo: '='
-            },
+            scope: false,
             controllerAs: 'vm',
             bindToController: true
         };
@@ -21,13 +19,22 @@
         return directive;
 
         /** @ngInject */
-        function AccountMenuController($log, firebaseAuth) {
+        function AccountMenuController(firebaseAuth) {
             var vm = this;
-            vm.signOut = signOut;
+            vm.firebaseAuth = firebaseAuth;
+            vm.accountInfo = {};
+            firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
+                if (firebaseUser) {
+                    vm.accountInfo = {
+                        'displayName': firebaseUser.displayName,
+                        'email': firebaseUser.email,
+                        'photoURL': firebaseUser.photoURL
+                    };
+                } else {
+                    vm.accountInfo = {};
+                }
+            });
 
-            function signOut(){
-                firebaseAuth.$signOut();
-            }
         }
     }
 

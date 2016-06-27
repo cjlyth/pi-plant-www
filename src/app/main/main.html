@@ -1,13 +1,20 @@
-<md-toolbar class="md-hue-2">
+<md-toolbar class="md-hue-2" ng-cloak>
     <div class="md-toolbar-tools">
-        <img class="piplant-logo"  src="assets/images/plant/32.png" >
-        <h2>
-            <span>PiPlant</span>
-        </h2>
+        <img class="piplant-logo"  src="assets/images/plant/48.png" >
+        <h2>PiPlant</h2>
         <span flex></span>
-        <account-menu account-info="accountInfo"></account-menu>
+        <div ng-show="main.firebaseAuth.$getAuth()">
+            <account-menu></account-menu>
+        </div>
+        <div ng-hide="main.firebaseAuth.$getAuth()">
+            <md-button aria-label="Sign in"
+                       class="md-icon-button"
+                       ng-click="main.firebaseAuth.$signInWithPopup('google')">
+                <md-icon class="material-icons">account_circle</md-icon>
+            </md-button>
+        </div>
     </div>
 </md-toolbar>
-<md-content ui-view layout-padding></md-content>
+<section ui-view></section>
 
 

@@ -63,14 +63,22 @@ html {
   margin-right: 5px;
 }
 
-.piplant-user-avatar {
-  border-radius: 50%;
-  height: 32px;
+md-menu-item .piplant-user-avatar {
+  height: 48px;
   outline: 0;
   vertical-align: top;
-  margin-top: -8px;
-  margin-left: -6px;
-  width: 32px;
+  width: 48px;
+  padding-right: 10px;
+}
+
+button .piplant-user-avatar {
+  border-radius: 50%;
+  height: 24px;
+  outline: 0;
+  vertical-align: top;
+  //margin-top: -8px;
+  //margin-left: -6px;
+  width: 24px;
 }
 
 

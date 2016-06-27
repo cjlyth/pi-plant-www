@@ -1,30 +1,31 @@
-<md-menu md-position-mode="target-right target" ng-show="vm.accountInfo.email">
+<md-menu md-position-mode="target-right target">
     <md-button aria-label="Open user menu"
                class="md-icon-button"
-               ng-click="$mdOpenMenu($event)">
+               ng-click="$mdOpenMenu($event)"
+               ng-switch="!!vm.accountInfo.photoURL">
         <md-icon class="material-icons"
-                 ng-hide="vm.accountInfo.photoURL">account_circle</md-icon>
+                 ng-switch-default
+                 ng-hide="vm.accountInfo.photoURL">account_box</md-icon>
+        <div>
         <img class="piplant-user-avatar"
-             ng-show="vm.accountInfo.photoURL"
-             ng-src="{{ vm.accountInfo.photoURL }}">
+             ng-switch-when="true"
+             ng-src="{{ vm.accountInfo.photoURL }}"></div>
     </md-button>
     <md-menu-content width="4" >
-        <md-menu-item ng-show="vm.accountInfo">
+        <md-menu-item>
             <div layout="row" flex>
-                <div layout-padding>
-                    <img class="piplant-user-avatar"
-                         ng-show="vm.accountInfo.photoURL"
-                         ng-src="{{ vm.accountInfo.photoURL }}">
-                </div>
+                <img class="piplant-user-avatar"
+                     ng-show="vm.accountInfo.photoURL"
+                     ng-src="{{ vm.accountInfo.photoURL }}">
                 <div layout="column">
                     <span class="md-subhead" ng-bind="vm.accountInfo.displayName"></span>
                     <span class="md-caption" ng-bind="vm.accountInfo.email"></span>
                 </div>
             </div>
         </md-menu-item>
-        <md-menu-divider ng-show="vm.accountInfo"></md-menu-divider>
-        <md-menu-item ng-show="vm.accountInfo">
-            <md-button ng-click="vm.signOut()">
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="vm.firebaseAuth.$signOut()">
                 <div layout="row" flex>
                     <md-icon ng-style="{color: '#A00'}"
                              aria-label="Sign out warning"
@@ -32,7 +33,7 @@
                              ng-class="3">
                         remove_circle
                     </md-icon>
-                    <span flex>Sign out</span>
+                    <span flex >Sign out</span>
                 </div>
             </md-button>
         </md-menu-item>
