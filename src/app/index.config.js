@@ -16,7 +16,7 @@
     
     $mdThemingProvider.theme('default')
         .primaryPalette('teal')
-        .accentPalette('orange')
+        .accentPalette('green')
         .dark();
     
     firebase.initializeApp(firebaseConfig);
