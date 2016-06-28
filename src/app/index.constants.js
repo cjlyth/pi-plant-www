@@ -6,6 +6,7 @@
     .module('piplant')
       .constant('moment', moment)
       .constant('firebase', firebase)
+      .constant('particle', new Particle())
       .constant('firebaseConfig', {
         apiKey: "AIzaSyBTEGwVRrKWtz-vzAzNObA-7Q71IUzeBfU",
         authDomain: "pi-plant.firebaseapp.com",

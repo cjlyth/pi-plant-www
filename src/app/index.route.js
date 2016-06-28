@@ -20,7 +20,12 @@
             url: '/devices',
             templateUrl: 'app/main/devices/devices.html',
             controller: 'DevicesController',
-            controllerAs: 'devices'
+            controllerAs: 'devices',
+            resolve: {
+                "resolvedUser": ["firebaseAuth", function(firebaseAuth) {
+                    return firebaseAuth.$requireSignIn();
+                }]
+            }
         };
 
         $stateProvider
