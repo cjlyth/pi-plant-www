@@ -2,14 +2,13 @@
     <div layout="row" flex>
         <md-input-container flex>
             <label>Particle Access Token</label>
-            <input type="text" ng-model="accountInfo.particleAccessToken"
-                   ng-change="devices.getDevices(accountInfo.particleAccessToken)" />
+            <input type="text" ng-model="devices.accountInfo.particleAccessToken" />
         </md-input-container>
         <md-button class="md-fab md-accent md-mini md-ink-ripple"
                    ng-class="devices.particleAccessTokenValid ? 'md-accent':'md-warn'"
-                   ng-disabled="!accountInfo.particleAccessToken"
+                   ng-disabled="!devices.accountInfo.particleAccessToken"
                    aria-label="Test access token"
-                   ng-click="devices.getDevices(accountInfo.particleAccessToken)">
+                   ng-click="devices.getDevices(devices.accountInfo.particleAccessToken)">
             <md-icon>{{ devices.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
         </md-button>
     </div>

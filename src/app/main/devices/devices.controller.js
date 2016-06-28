@@ -6,31 +6,29 @@
     .controller('DevicesController', DevicesController);
 
   /** @ngInject */
-  function DevicesController($log, $scope, firebaseAuth, resolvedUser, $firebaseObject, particle) {
+  function DevicesController($log, $scope, firebaseAuth, resolvedUser, $firebaseObject, particleApi) {
     var devices = this;
 
     devices.getDevices = getDevices;
+    devices.accountInfo = {};
     devices.particleDeviceList = [];
     devices.particleAccessTokenValid = false;
-
     var ref = firebase.database().ref().child("users").child(resolvedUser.uid);
     var accountInfo = $firebaseObject(ref);
-    accountInfo.$bindTo($scope, "accountInfo");
-    $scope.$watch('accountInfo.particleAccessToken', function(particleAccessToken, oldValue) {
-      if (particleAccessToken !== oldValue) {
-        devices.getDevices(particleAccessToken);
-      }
-    });
+    accountInfo.$bindTo($scope, "devices.accountInfo");
+
+    $scope.$watch('devices.accountInfo.particleAccessToken', devices.getDevices);
+
     activate();
     function activate() {
-      $log.debug('devices activate', particle);
+      $log.debug('devices activate', particleApi);
     }
     function getDevices(particleAccessToken){
       if (!particleAccessToken) {
         return;
       }
       $log.debug('attempting to list devices', particleAccessToken);
-      var devicesPr = particle.listDevices({ auth: particleAccessToken });
+      var devicesPr = particleApi.listDevices({ auth: particleAccessToken });
 
       return devicesPr.then(
           getDevicesComplete,
@@ -38,7 +36,6 @@
       );
 
     }
-
     function getDevicesComplete(response) {
       $scope.$apply(function(){
         devices.particleAccessTokenValid = true;
