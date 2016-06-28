@@ -1,0 +1,41 @@
+<md-menu md-position-mode="target-right target">
+    <md-button aria-label="Open user menu"
+               class="md-icon-button"
+               ng-click="$mdOpenMenu($event)"
+               ng-switch="!!vm.accountInfo.photoURL">
+        <md-icon class="material-icons"
+                 ng-switch-default
+                 ng-hide="vm.accountInfo.photoURL">account_box</md-icon>
+        <div>
+        <img class="piplant-user-avatar"
+             ng-switch-when="true"
+             ng-src="{{ vm.accountInfo.photoURL }}"></div>
+    </md-button>
+    <md-menu-content width="4" >
+        <md-menu-item>
+            <div layout="row" flex>
+                <img class="piplant-user-avatar"
+                     ng-show="vm.accountInfo.photoURL"
+                     ng-src="{{ vm.accountInfo.photoURL }}">
+                <div layout="column">
+                    <span class="md-subhead" ng-bind="vm.accountInfo.displayName"></span>
+                    <span class="md-caption" ng-bind="vm.accountInfo.email"></span>
+                </div>
+            </div>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="vm.firebaseAuth.$signOut()">
+                <div layout="row" flex>
+                    <md-icon ng-style="{color: '#A00'}"
+                             aria-label="Sign out warning"
+                             class="material-icons step"
+                             ng-class="3">
+                        remove_circle
+                    </md-icon>
+                    <span flex >Sign out</span>
+                </div>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

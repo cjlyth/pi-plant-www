@@ -1,0 +1,59 @@
+<md-toolbar class="md-hue-2" ng-cloak>
+    <div class="md-toolbar-tools">
+        <a ui-sref="home">
+        <img class="piplant-logo"  src="assets/images/plant/32.png" >
+        </a>
+        <h2>PiPlant</h2>
+        <span flex></span>
+        <div ng-show="main.firebaseAuth.$getAuth()">
+            <account-menu></account-menu>
+        </div>
+        <div ng-hide="main.firebaseAuth.$getAuth()">
+            <md-button aria-label="Sign in"
+                       class="md-icon-button"
+                       ng-click="main.firebaseAuth.$signInWithPopup('google')">
+                <md-icon class="material-icons">account_circle</md-icon>
+            </md-button>
+        </div>
+    </div>
+</md-toolbar>
+<section ui-view>
+    <section layout="row" layout-sm="column"
+             >
+        <md-card flex-gt-sm="66" flex-offset-gt-sm="15">
+            <md-card-header>
+                <md-card-header-text>
+                    <span class="md-title">Welcome</span>
+                    <span class="md-subhead"
+                          ng-hide="main.firebaseAuth.$getAuth()">Please sign in.</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-card-content>
+                Welcome to PiPlant! This site was started with a few objectives in mind.
+                <ol>
+                    <li>Effortlessly care for my house plants</li>
+                    <li>Learn how to effectively automate things around the house</li>
+                    <li>Explore some pretty cool cloud services</li>
+                </ol>
+                Please feel free to have a look around.
+                You may not find very much useful here as its really just my own little playground.
+                I am currently working on my devices page so you may have to clear your cache often when on that page!.
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+
+                <md-button class="md-fab md-primary"
+                           aria-label="Devices"
+                           ng-show="main.firebaseAuth.$getAuth()"
+                           ui-sref=".devices">
+                    <md-icon md-font-icon>developer_board</md-icon>
+                </md-button>
+                <md-button class="md-primary md-raised" ng-hide="main.firebaseAuth.$getAuth()"
+                           ng-click="main.firebaseAuth.$signInWithPopup('google')">Sign in</md-button>
+            </md-card-actions>
+        </md-card>
+
+    </section>
+</section>
+
+
+
