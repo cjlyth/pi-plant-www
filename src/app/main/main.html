@@ -17,12 +17,13 @@
 </md-toolbar>
 <section ui-view>
     <section layout="row" layout-sm="column"
-             ng-hide="main.firebaseAuth.$getAuth()">
+             >
         <md-card flex-gt-sm="66" flex-offset-gt-sm="15">
             <md-card-header>
                 <md-card-header-text>
                     <span class="md-title">Welcome</span>
-                    <span class="md-subhead">Please sign in.</span>
+                    <span class="md-subhead"
+                          ng-hide="main.firebaseAuth.$getAuth()">Please sign in.</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
@@ -36,7 +37,7 @@
                 You may not find very much useful here as its really just my own little playground.
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
-                <md-button class="md-primary md-raised"
+                <md-button class="md-primary md-raised" ng-hide="main.firebaseAuth.$getAuth()"
                            ng-click="main.firebaseAuth.$signInWithPopup('google')">Sign in</md-button>
             </md-card-actions>
         </md-card>
