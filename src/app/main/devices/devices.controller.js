@@ -60,8 +60,10 @@
         deviceId: deviceId,
         argument: state ? 'on' : 'off',
         name: 'toggleState' });
+
       fnPr.then(
           function(data) {
+            devices.accountInfo.particles[deviceId].selected = !!data.body.return_value;
             console.log('Function called succesfully:', data);
           }, function(err) {
             console.log('An error occurred:', err);
