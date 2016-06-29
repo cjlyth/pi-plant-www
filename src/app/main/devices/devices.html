@@ -1,25 +1,27 @@
 <md-content ng-cloak flex layout-padding>
-    <div layout="row" flex>
-        <md-input-container flex>
-            <label>Particle Access Token</label>
-            <input type="text" ng-model="devices.accountInfo.particleAccessToken" />
-        </md-input-container>
-        <md-button class="md-fab md-accent md-mini md-ink-ripple"
-                   ng-class="devices.particleAccessTokenValid ? 'md-accent':'md-warn'"
-                   ng-disabled="!devices.accountInfo.particleAccessToken"
-                   aria-label="Test access token"
-                   ng-click="devices.getDevices(devices.accountInfo.particleAccessToken)">
-            <md-icon>{{ devices.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
-        </md-button>
-    </div>
-
     <md-list>
-        <md-list-item class="md-2-line" ng-repeat="particleDevice in devices.particleDeviceList">
-            <pre>{{ particleDevice | json }}</pre>
+        <md-subheader class="md-no-sticky">Particle</md-subheader>
+        <md-list-item>
+            <md-input-container flex>
+                <label>Access Token</label>
+                <input type="text" ng-model="devices.accountInfo.particleAccessToken" />
+            </md-input-container>
+            <md-button class="md-fab md-mini md-ink-ripple"
+                       ng-class="devices.particleAccessTokenValid ? 'md-accent':'md-warn'"
+                       ng-disabled="!devices.accountInfo.particleAccessToken"
+                       aria-label="Test access token"
+                       ng-click="devices.getDevices(devices.accountInfo.particleAccessToken)">
+                <md-icon>{{ devices.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
+            </md-button>
+        </md-list-item>
+
+        <md-list-item ng-repeat="particleDevice in devices.particleDeviceList">
+            <md-icon>{{ particleDevice.connected ? 'cloud_on' : 'cloud_off'}}</md-icon>
             <div class="md-list-item-text">
-                <h3>{{item.title}}</h3>
-                <p>{{item.description}}</p>
+                <h3>{{particleDevice.name}}</h3>
+                <p>{{particleDevice.id}}</p>
             </div>
+            <md-switch class="md-secondary" ng-model="devices.particles[particleDevice.id].selected"></md-switch>
         </md-list-item>
     </md-list>
 </md-content>
