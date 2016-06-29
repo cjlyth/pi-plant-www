@@ -9,19 +9,20 @@
             <md-button class="md-fab md-mini md-ink-ripple"
                        ng-class="devices.particleAccessTokenValid ? 'md-accent':'md-warn'"
                        ng-disabled="!devices.accountInfo.particleAccessToken"
-                       aria-label="Test access token"
+                       aria-label="Refresh Devices"
                        ng-click="devices.getDevices(devices.accountInfo.particleAccessToken)">
                 <md-icon>{{ devices.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
             </md-button>
         </md-list-item>
-
-        <md-list-item ng-repeat="particleDevice in devices.particleDeviceList">
+        <md-list-item class="md-2-line" ng-repeat="particleDevice in devices.particleDeviceList">
             <md-icon>{{ particleDevice.connected ? 'cloud_on' : 'cloud_off'}}</md-icon>
-            <div class="md-list-item-text">
+            <div class="md-list-item-text" >
                 <h3>{{particleDevice.name}}</h3>
                 <p>{{particleDevice.id}}</p>
             </div>
-            <md-switch class="md-secondary" ng-model="devices.particles[particleDevice.id].selected"></md-switch>
+            <md-switch class="md-secondary"
+                       ng-model="devices.accountInfo.particles[particleDevice.id].selected"
+                       aria-label="call"></md-switch>
         </md-list-item>
     </md-list>
 </md-content>
