@@ -1,11 +1,29 @@
 <section ng-repeat="(deviceId, deviceInfo) in main.accountInfo.particles">
-    <md-card ng-show="deviceInfo.enabled" >
-        <md-card-content ng-init="lights.lightLevels[deviceId] = deviceInfo.enabled && 'update'">
-            <md-button class="md-icon-button md-raised"
-                    ng-click="lights.toggleLights(main.accountInfo.particleAccessToken, deviceId)">
-                <md-icon>{{ lights.lightLevels[deviceId] || 'warning' }}</md-icon>
-                <p>Light Level</p>
-            </md-button>
+    <md-card ng-show="deviceInfo.enabled"
+             ng-init="deviceInfo.enabled && lights.initDevice(main.accountInfo.particleAccessToken, deviceId)">
+        <md-card-content layout="row">
+            <div>
+                <div>
+                    <md-icon>{{ lights.lightLevels[deviceId].iconName || 'warning' }}</md-icon>
+                    <span flex>Light level (<span ng-bind="lights.lightLevels[deviceId].lightValue">0</span>/7)</span>
+                </div>
+                <div>
+
+                    <md-icon ng-class="lights.lightLevels[deviceId].ledState ? 'md-accent' : ''">{{ lights.lightLevels[deviceId].ledState ? 'flash_on' : 'flash_off' }}</md-icon>
+                    Light is {{ lights.lightLevels[deviceId].ledState ? 'on' : 'off' }}
+                </div>
+            </div>
+            <div layout="row" layout-padding>
+                <span ng-repeat="i in [1, 2, 3, 4, 5, 6, 7]">
+                    <md-icon ng-class="lights.lightLevels[deviceId].lightValue == i && 'md-accent'">brightness_{{ i }}</md-icon>
+                </span>
+            </div>
         </md-card-content>
+        <md-card-actions>
+            <md-button class="md-icon-button md-raised md-primary"
+                       ng-click="lights.toggleLights(main.accountInfo.particleAccessToken, deviceId, lights.lightLevels[deviceId].ledState)">
+                <md-icon>flash_on</md-icon>
+            </md-button>
+        </md-card-actions>
     </md-card>
 </section>
