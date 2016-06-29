@@ -1,7 +1,7 @@
 <section ng-repeat="(deviceId, deviceInfo) in main.accountInfo.particles">
     <md-card ng-show="deviceInfo.enabled"
              ng-init="deviceInfo.enabled && lights.initDevice(main.accountInfo.particleAccessToken, deviceId)">
-        <md-card-content layout="row">
+        <md-card-content layout="column">
             <div>
                 <div>
                     <md-icon>{{ lights.lightLevels[deviceId].iconName || 'warning' }}</md-icon>
