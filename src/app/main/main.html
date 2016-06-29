@@ -1,7 +1,7 @@
 <md-toolbar class="md-hue-2" ng-cloak>
     <div class="md-toolbar-tools">
         <a ui-sref="home">
-        <img class="piplant-logo"  src="assets/images/plant/32.png" >
+            <img class="piplant-logo" src="assets/images/plant/32.png">
         </a>
         <h2>PiPlant</h2>
         <span flex></span>
@@ -17,22 +17,33 @@
         </div>
     </div>
 </md-toolbar>
-
 <md-nav-bar ng-show="main.firebaseAuth.$getAuth()"
             md-selected-nav-item="main.currentNavItem"
             nav-bar-aria-label="navigation links">
     <md-nav-item md-nav-sref="."
-                 name="home">Home</md-nav-item>
+                 name="home">
+        <md-icon>home</md-icon>
+        <span hide show-gt-sm flex>Home</span>
+    </md-nav-item>
     <md-nav-item md-nav-sref=".devices"
-                 name="home.devices">Devices</md-nav-item>
+                 name="home.devices">
+        <md-icon>developer_board</md-icon>
+        <span hide show-gt-sm flex>Devices</span>
+    </md-nav-item>
     <md-nav-item md-nav-sref=".light"
-                 name="home.light">Light</md-nav-item>
+                 name="home.light">
+        <md-icon>wb_sunny</md-icon>
+        <span hide show-gt-sm flex>Light</span>
+    </md-nav-item>
     <md-nav-item md-nav-sref=".water"
-                 name="home.water">Water</md-nav-item>
+                 name="home.water">
+        <md-icon>local_drink</md-icon>
+        <span hide show-gt-sm flex>Water</span>
+    </md-nav-item>
 </md-nav-bar>
-<section ui-view>
-    <section layout="row" layout-sm="column">
-        <md-card flex-gt-sm="66" flex-offset-gt-sm="15">
+<md-content layout-fill layout="row" layout-sm="column">
+    <section flex-gt-sm="66" flex-offset-gt-sm="15" flex ui-view>
+        <md-card>
             <md-card-header>
                 <md-card-header-text>
                     <span class="md-title">Welcome</span>
@@ -52,13 +63,12 @@
                 I am currently working on my devices page so you may have to clear your cache often when on that page!.
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
-                <md-button class="md-primary md-raised" ng-hide="main.firebaseAuth.$getAuth()"
-                           ng-click="main.firebaseAuth.$signInWithPopup('google')">Sign in</md-button>
+                <md-button class="md-primary md-raised"
+                           ng-hide="main.firebaseAuth.$getAuth()"
+                           ng-click="main.firebaseAuth.$signInWithPopup('google')">
+                    <span>Sign in</span>
+                </md-button>
             </md-card-actions>
         </md-card>
-
     </section>
-</section>
-
-
-
+</md-content>
