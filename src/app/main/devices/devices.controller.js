@@ -15,20 +15,14 @@
     devices.particleAccessTokenValid = false;
 
     var ref = firebase.database().ref().child("users").child(resolvedUser.uid);
-    var accountInfo = $firebaseObject(ref);
-    accountInfo.$bindTo($scope, "devices.accountInfo");
+    $firebaseObject(ref).$bindTo($scope, "devices.accountInfo");
 
     $scope.$watch('devices.accountInfo.particleAccessToken', devices.getDevices);
 
-    activate();
-    function activate() {
-      $log.debug('devices activate', particleApi);
-    }
     function getDevices(particleAccessToken){
       if (!particleAccessToken) {
         return;
       }
-      $log.debug('attempting to list devices', particleAccessToken);
       return particleApi.listDevices({ auth: particleAccessToken })
           .then(getDevicesComplete, getDevicesFailed);
     }
