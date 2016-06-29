@@ -7,7 +7,7 @@
 
 
     /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+    function routerConfig($stateProvider, $urlRouterProvider) {
         var home = {
             name: 'home',
             url: '/home',
@@ -30,12 +30,24 @@
         var homeLight = {
             name: 'home.light',
             url: '/light',
-            templateUrl: 'app/main/light/light.html'
+            templateUrl: 'app/main/light/light.html',
+            controller: 'LightController',
+            controllerAs: 'lights',
+            resolve: {
+                "resolvedUser": ["firebaseAuth", function(firebaseAuth) {
+                    return firebaseAuth.$requireSignIn();
+                }]
+            }
         };
         var homeWater = {
             name: 'home.water',
             url: '/water',
-            templateUrl: 'app/main/water/water.html'
+            templateUrl: 'app/main/water/water.html',
+            resolve: {
+                "resolvedUser": ["firebaseAuth", function(firebaseAuth) {
+                    return firebaseAuth.$requireSignIn();
+                }]
+            }
         };
         $stateProvider
             .state(home)
@@ -43,8 +55,7 @@
             .state(homeLight)
             .state(homeDevices)
         ;
-
-    $urlRouterProvider.otherwise('/home');
-  }
+        $urlRouterProvider.otherwise('/home');
+    }
 
 })();

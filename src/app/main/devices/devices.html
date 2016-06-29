@@ -4,14 +4,14 @@
         <md-list-item>
             <md-input-container flex>
                 <label>Access Token</label>
-                <input type="text" ng-model="devices.accountInfo.particleAccessToken" />
+                <input type="text" ng-model="main.accountInfo.particleAccessToken" />
             </md-input-container>
             <md-button class="md-fab md-mini md-ink-ripple"
                        ng-class="devices.particleAccessTokenValid ? 'md-accent':'md-warn'"
-                       ng-disabled="!devices.accountInfo.particleAccessToken"
+                       ng-disabled="!main.accountInfo.particleAccessToken"
                        aria-label="Refresh Devices"
-                       ng-click="devices.getDevices(devices.accountInfo.particleAccessToken)">
-                <md-icon>{{ devices.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
+                       ng-click="devices.getDevices(main.accountInfo.particleAccessToken)">
+                <md-icon>{{ main.particleAccessTokenValid ? 'done' : 'clear' }}</md-icon>
             </md-button>
         </md-list-item>
         <md-list-item class="md-2-line" ng-repeat="particleDevice in devices.particleDeviceList">
@@ -21,7 +21,7 @@
                 <p>{{particleDevice.id}}</p>
             </div>
             <md-switch class="md-secondary" aria-label="enable"
-                       ng-model="devices.accountInfo.particles[particleDevice.name].enabled"></md-switch>
+                       ng-model="main.accountInfo.particles[particleDevice.name].enabled"></md-switch>
         </md-list-item>
     </md-list>
 </md-content>

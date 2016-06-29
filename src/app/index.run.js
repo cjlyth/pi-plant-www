@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -6,12 +6,13 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, firebaseAuth, $state) {
+  function runBlock($log, $rootScope, $state) {
     $log.debug('runBlock end');
-    firebaseAuth.$onAuthStateChanged(function(firebaseUser) {
-      if (!firebaseUser) {
-        $state.go('home');
-      }
-    });
+    $rootScope.$on("$stateChangeError",
+      function (event, toState, toParams, fromState, fromParams, error) {
+        if (error === "AUTH_REQUIRED") {
+          $state.go("home");
+        }
+      });
   }
 })();

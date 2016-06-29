@@ -6,18 +6,14 @@
     .controller('DevicesController', DevicesController);
 
   /** @ngInject */
-  function DevicesController($log, $scope, resolvedUser, $firebaseObject, particleApi) {
+  function DevicesController($log, $scope, particleApi) {
     var devices = this;
-
+      $log.debug('DevicesController init');
     devices.getDevices = getDevices;
-    devices.accountInfo = {};
     devices.particleDeviceList = [];
     devices.particleAccessTokenValid = false;
 
-    var ref = firebase.database().ref().child("users").child(resolvedUser.uid);
-    $firebaseObject(ref).$bindTo($scope, "devices.accountInfo");
-
-    $scope.$watch('devices.accountInfo.particleAccessToken', devices.getDevices);
+    $scope.$watch('main.accountInfo.particleAccessToken', devices.getDevices);
 
     function getDevices(particleAccessToken){
       if (!particleAccessToken) {
