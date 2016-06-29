@@ -20,9 +20,8 @@
                 <h3>{{particleDevice.name}}</h3>
                 <p>{{particleDevice.id}}</p>
             </div>
-            <md-switch class="md-secondary" aria-label="call"
-                       ng-model="devices.accountInfo.particles[particleDevice.id].selected"
-                       ng-change="devices.toggleLed(particleDevice.id, devices.accountInfo.particles[particleDevice.id].selected)"></md-switch>
+            <md-switch class="md-secondary" aria-label="select"
+                       ng-model="devices.accountInfo.particles[particleDevice.id].selected"></md-switch>
         </md-list-item>
     </md-list>
 </md-content>
