@@ -27,9 +27,20 @@
                 }]
             }
         };
-
+        var homeLight = {
+            name: 'home.light',
+            url: '/light',
+            templateUrl: 'app/main/light/light.html'
+        };
+        var homeWater = {
+            name: 'home.water',
+            url: '/water',
+            templateUrl: 'app/main/water/water.html'
+        };
         $stateProvider
             .state(home)
+            .state(homeWater)
+            .state(homeLight)
             .state(homeDevices)
         ;
 

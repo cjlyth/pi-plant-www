@@ -17,9 +17,21 @@
         </div>
     </div>
 </md-toolbar>
+
+<md-nav-bar ng-show="main.firebaseAuth.$getAuth()"
+            md-selected-nav-item="main.currentNavItem"
+            nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-sref="."
+                 name="home">Home</md-nav-item>
+    <md-nav-item md-nav-sref=".devices"
+                 name="home.devices">Devices</md-nav-item>
+    <md-nav-item md-nav-sref=".light"
+                 name="home.light">Light</md-nav-item>
+    <md-nav-item md-nav-sref=".water"
+                 name="home.water">Water</md-nav-item>
+</md-nav-bar>
 <section ui-view>
-    <section layout="row" layout-sm="column"
-             >
+    <section layout="row" layout-sm="column">
         <md-card flex-gt-sm="66" flex-offset-gt-sm="15">
             <md-card-header>
                 <md-card-header-text>
@@ -40,13 +52,6 @@
                 I am currently working on my devices page so you may have to clear your cache often when on that page!.
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
-
-                <md-button class="md-fab md-primary"
-                           aria-label="Devices"
-                           ng-show="main.firebaseAuth.$getAuth()"
-                           ui-sref=".devices">
-                    <md-icon md-font-icon>developer_board</md-icon>
-                </md-button>
                 <md-button class="md-primary md-raised" ng-hide="main.firebaseAuth.$getAuth()"
                            ng-click="main.firebaseAuth.$signInWithPopup('google')">Sign in</md-button>
             </md-card-actions>
