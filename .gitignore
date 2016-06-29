@@ -2,3 +2,5 @@
 /.idea/
 /dist/
 node_modules
+/particle-test.sh
+/npm-debug.log

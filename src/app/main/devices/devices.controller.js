@@ -10,6 +10,7 @@
     var devices = this;
 
     devices.getDevices = getDevices;
+    devices.toggleLed = toggleLed;
     devices.accountInfo = {};
     devices.particleDeviceList = [];
     devices.particleAccessTokenValid = false;
@@ -18,7 +19,9 @@
     accountInfo.$bindTo($scope, "devices.accountInfo");
 
     $scope.$watch('devices.accountInfo.particleAccessToken', devices.getDevices);
-
+    
+    
+    
     activate();
     function activate() {
       $log.debug('devices activate', particleApi);
@@ -48,6 +51,21 @@
         devices.particleAccessTokenValid = false;
         devices.particleDeviceList = [];
       });
+    }
+    
+    function toggleLed(deviceId, state){
+      $log.debug('toggleLed', deviceId)
+      var fnPr = particleApi.callFunction({
+        auth: devices.accountInfo.particleAccessToken,
+        deviceId: deviceId,
+        argument: state ? 'on' : 'off',
+        name: 'toggleState' });
+      fnPr.then(
+          function(data) {
+            console.log('Function called succesfully:', data);
+          }, function(err) {
+            console.log('An error occurred:', err);
+          });
     }
   }
 })();
