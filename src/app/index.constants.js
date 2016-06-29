@@ -1,4 +1,4 @@
-/* global firebase:false, moment:false, Particle:false */
+/* global firebase:false, moment:false, Particle:false, jQuery:false */
 (function() {
   'use strict';
 
@@ -6,6 +6,7 @@
     .module('piplant')
       .constant('moment', moment)
       .constant('firebase', firebase)
+    .constant('jQuery', jQuery)
       .constant('Particle', Particle)
       .constant('firebaseConfig', {
         apiKey: "AIzaSyBTEGwVRrKWtz-vzAzNObA-7Q71IUzeBfU",

@@ -13,9 +13,9 @@
     main.accountInfo = {};
 
     main.firebaseAuth.$onAuthStateChanged(function (firebaseUser) {
-      $log.debug('accountInfo$onAuthStateChanged');
+      $log.debug('accountInfo$onAuthStateChanged', firebaseUser);
       if (firebaseUser) {
-        main.accountInfo = accountService.getAccountInfo(firebaseUser);
+        accountService.getAccountInfo(firebaseUser).$bindTo($scope, "main.accountInfo");
       } else {
         main.state.go("home");
       }

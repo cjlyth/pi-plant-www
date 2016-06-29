@@ -1,5 +1,11 @@
-<md-card>
-    <md-card-content>
-        <h3>light</h3>
-    </md-card-content>
-</md-card>
+<section ng-repeat="(deviceId, deviceInfo) in main.accountInfo.particles">
+    <md-card ng-show="deviceInfo.enabled" >
+        <md-card-content ng-init="lights.lightLevels[deviceId] = deviceInfo.enabled && 'update'">
+            <md-button class="md-icon-button md-raised"
+                    ng-click="lights.toggleLights(main.accountInfo.particleAccessToken, deviceId)">
+                <md-icon>{{ lights.lightLevels[deviceId] || 'warning' }}</md-icon>
+                <p>Light Level</p>
+            </md-button>
+        </md-card-content>
+    </md-card>
+</section>
