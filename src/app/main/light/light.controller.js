@@ -11,8 +11,10 @@
     lights.getLightLevel = getLightLevel;
     lights.toggleLights = toggleLights;
     lights.initDevice = initDevice;
+    lights.getLightState = getLightState;
 
     lights.lightLevels = {};
+    lights.lightStates = {};
     lights.poller = $interval(refreshData, 2000);
 
 
@@ -29,7 +31,9 @@
       //  lights.lightLevels[deviceId] = deviceInfo.enabled && 'update'
       $log.debug('initDevice', deviceId);
       lights.lightLevels[deviceId] = {};
+      lights.lightStates[deviceId] = {};
       lights.getLightLevel(authToken, deviceId);
+      lights.getLightState(authToken, deviceId);
     }
 
     function toggleLights(authToken, deviceId, ledState) {
@@ -60,10 +64,29 @@
           $scope.$evalAsync('main.accountInfo.particles[deviceId].enabled && lights.getLightLevel(main.accountInfo.particleAccessToken, deviceId)', {
             deviceId: deviceId
           });
+          $scope.$evalAsync('main.accountInfo.particles[deviceId].enabled && lights.getLightState(main.accountInfo.particleAccessToken, deviceId)', {
+            deviceId: deviceId
+          });
         }
       });
     }
 
+    function getLightState(authToken, deviceId) {
+      particleApi.getVariable({deviceId: deviceId, name: 'lightState', auth: authToken}).then(function (data) {
+        if ('VarReturn' == data.body.cmd && 'lightState' == data.body.name) {
+          $scope.$apply(function () {
+            angular.extend(lights.lightStates[deviceId], {
+              lightState: data.body.result
+            });
+          });
+        }
+      }, function (err) {
+        $scope.$apply(function () {
+          lights.lightLevels[deviceId] = undefined;
+        });
+        $log.debug('An error occurred while getting attrs:', err);
+      });
+    }
     function getLightLevel(authToken, deviceId) {
       particleApi.getVariable({deviceId: deviceId, name: 'analogvalue', auth: authToken}).then(function (data) {
         if ('VarReturn' == data.body.cmd && 'analogvalue' == data.body.name) {

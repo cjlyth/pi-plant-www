@@ -5,12 +5,11 @@
             <div>
                 <div>
                     <md-icon>{{ lights.lightLevels[deviceId].iconName || 'warning' }}</md-icon>
-                    <span flex>Light level (<span ng-bind="lights.lightLevels[deviceId].lightValue">0</span>/7)</span>
+                    <span flex>Light level (<span ng-bind="lights.lightLevels[deviceId].lightValue || 0">0</span>/7)</span>
                 </div>
                 <div>
-
                     <md-icon ng-class="lights.lightLevels[deviceId].ledState ? 'md-accent' : ''">{{ lights.lightLevels[deviceId].ledState ? 'flash_on' : 'flash_off' }}</md-icon>
-                    Light is {{ lights.lightLevels[deviceId].ledState ? 'on' : 'off' }}
+                    Light is {{ lights.lightStates[deviceId].lightState ? 'on' : 'off' }}
                 </div>
             </div>
             <div layout="row" layout-padding>
@@ -21,7 +20,7 @@
         </md-card-content>
         <md-card-actions>
             <md-button class="md-icon-button md-raised md-primary"
-                       ng-click="lights.toggleLights(main.accountInfo.particleAccessToken, deviceId, lights.lightLevels[deviceId].ledState)">
+                       ng-click="lights.toggleLights(main.accountInfo.particleAccessToken, deviceId, lights.lightStates[deviceId].lightState)">
                 <md-icon>flash_on</md-icon>
             </md-button>
         </md-card-actions>
